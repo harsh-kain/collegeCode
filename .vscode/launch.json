@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "stackTrace",
+            "request": "launch",
+            "mainClass": "stackTrace",
+            "projectName": "collegeCode_a9413902"
+        },
+        {
+            "type": "java",
             "name": "tryCatch",
             "request": "launch",
             "mainClass": "tryCatch",
