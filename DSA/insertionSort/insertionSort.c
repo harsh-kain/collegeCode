@@ -19,7 +19,7 @@ void insertionSort(int arr[10], int n){
 }
 int main()
 {
-    /* code */
+    
     int arr[10] = {9,8,7,6,5,4,3,2,1,0};
     for(int i = 0; i<10; i++){
         printf("%d ", arr[i]);
@@ -30,6 +30,7 @@ int main()
     for(int i = 0; i<10; i++){
         printf("%d ", arr[i]);
     }
+    printf("\n");
 
     return 0;
 }
