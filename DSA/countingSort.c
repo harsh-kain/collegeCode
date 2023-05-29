@@ -27,7 +27,7 @@ int main()
     int bArr[11];
     countingSort(arr, 11 ,bArr);
 
-    for (int i = 1; i <= 10; i++)
+    for (int i = 0; i <= 10; i++)
     {
         printf("%d ", bArr[i]);
     }
