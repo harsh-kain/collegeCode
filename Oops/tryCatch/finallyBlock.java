@@ -16,10 +16,10 @@ public class finallyBlock {
             {  
                 System.out.println("Parent Exception occurs");  
             }           
-            finally{
+        finally{
 
-                System.out.println("rest of the code");   
-            }  
+            System.out.println("rest of the code");   
+        }  
 
     }
 }

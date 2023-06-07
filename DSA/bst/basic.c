@@ -58,14 +58,7 @@ int totalNonLeafNode(BST * tree){
     else{
     }
 }
-// int totalLeafNode(BST *tree){
-//     if(tree == NULL ){
-//         return 0;
-//     }
-//     else{
-//         return (totalLeafNode(tree -> left) + totalLeafNode(tree -> right) + 1);
-//     }
-// }
+
 BST *findGreatestElement(BST * tree){
     if((tree == NULL) || (tree -> right ) == NULL){
         return tree;
@@ -82,9 +75,40 @@ BST *findSmallestElement(BST * tree){
         return findSmallestElement(tree -> left);
     }
 }
+void deleteNode(BST ** tree , int element){
+    BST *temp;
+    if(*tree == NULL){
+        printf("Element not found in BST\n");
+    }
+    else if(element < (*tree) -> item){
+        deleteNode(&((*tree) -> left), element);
+    }
+    else if(element > (*tree) -> item){
+        deleteNode(&((*tree) -> right), element );
+    }
+    else if((*tree) ->left && (*tree) -> right){
+        temp = findGreatestElement((*tree) ->left);
+        (*tree) -> item = temp -> item;
+        deleteNode(&(*tree) -> left, temp -> item);
+
+    }
+    else{
+        temp = *tree;
+        if(((*tree) -> left == NULL) && ((*tree) -> right == NULL)){
+            *tree = NULL;
+        }
+        else if((*tree) ->left != NULL){
+            *tree = (*tree) -> left;
+        }
+        else{
+            *tree = (*tree) -> right;
+        }
+        free(temp);
+    }
+}
 int main(){
 
-    int ch, element;
+    int ch, element,deleteElement;
     BST * root, *loc;
     root = NULL;
     while (1)
@@ -96,12 +120,13 @@ int main(){
         printf("4 -> PostOrder\n");
         printf("5 -> count leaf node \n");
         printf("6 -> count NonLeaf node \n");
-        printf("7 -> total leaf node \n");
-        printf("8 -> find greatest element \n");
-        printf("9 -> find smallest element \n");
+        printf("7 -> find greatest element \n");
+        printf("8 -> find smallest element \n");
+        printf("8 -> Delete node in element \n");
         printf("10 -> Exit\n");
         printf("Enter your choice----->\n");
         scanf("%d", &ch);
+
         switch (ch)
         {
         case 1:
@@ -138,17 +163,29 @@ int main(){
             }
             break;
 
-        // case 5:
-        //     printf("Total leaf node are %d\n", totalLeafNode(root));
-        //     break;
+        case 5:
+            printf("Total leaf node are %d\n", totalLeafNode(root));
+            break;
 
         case 6:
             printf("Total non leaf node are %d\n", totalNonLeafNode(root));
             break;
 
-        // case 7:
-        //     printf("Greatest element is %d\n", totalNonLeafNode(root));
-        //     break;
+        case 7:
+            loc = findGreatestElement(root);
+            printf("Greatest element is %d\n", loc->item); 
+            break;
+
+        case 8:
+            loc = findSmallestElement(root);
+            printf("Greatest element is %d\n", loc->item);
+            break;
+
+        case 9:
+            printf("enter the value of element\n");
+            scanf("%d", &deleteElement);
+            deleteNode(&root, deleteElement);
+            break;
 
         case 10:
             exit(1);
